@@ -1,3 +1,4 @@
+import 'package:Flutter_Localization/Language.dart';
 import 'package:Flutter_Localization/routes/route_name.dart';
 import 'package:flutter/material.dart';
 
@@ -8,15 +9,40 @@ class HomePage extends StatefulWidget {
   }
 }
 
+_languagecode(Language language) {
+  print(language.contruecode);
+}
+
 class _HomePage extends State<HomePage> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: _drowerpage(),
-        appBar: AppBar(
-          title: Text('HomePage'),
-        ),
+        appBar: AppBar(title: Text('HomePage'), actions: [
+          Padding(
+              padding: EdgeInsets.all(8),
+              child: DropdownButton(
+                onChanged: (language) {
+                  _languagecode(language);
+                },
+                icon: Icon(
+                  Icons.language,
+                  color: Colors.white,
+                ),
+                underline: SizedBox(),
+                items: Language.languageList()
+                    .map<DropdownMenuItem>(
+                      (lang) => DropdownMenuItem(
+                          value: lang,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [Text(lang.flag), Text(lang.name)],
+                          )),
+                    )
+                    .toList(),
+              ))
+        ]),
         body: _mainform());
   }
 
