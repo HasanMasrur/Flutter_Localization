@@ -12,7 +12,7 @@ class _SattingPage extends State<SattingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomePage'),
+        title: Text('SettingPage'),
       ),
       body: Container(),
     );
