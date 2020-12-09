@@ -15,18 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
-  _languagecode(Language language) {
-    Locale _temp;
-    switch (language.languageCode) {
-      case ENGLISH:
-        _temp = Locale(language.languageCode, 'US');
-        break;
-      case BANGLA:
-        _temp = Locale(language.languageCode, 'BD');
-        break;
-      default:
-        _temp = Locale(ENGLISH, 'US');
-    }
+  _languagecode(Language language) async {
+    Locale _temp = await setLocale(language.languageCode);
     MyApp.setLocales(context, _temp);
   }
 
