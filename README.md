@@ -6,7 +6,7 @@ Learn & Enjoy!
 SharePrefarance,
 flutter_localizations:
 ![Screenshot_2020-12-09-20-37-57-935_com example Flutter_Localization](https://user-images.githubusercontent.com/48550316/101643797-aedd2f00-3a5e-11eb-8151-d0c79529f9e5.jpg)
-
+![English](https://user-images.githubusercontent.com/48550316/101643940-d59b6580-3a5e-11eb-9902-96c2ddc47a1e.jpg)
 
 ## Getting Started
 
