@@ -1,6 +1,11 @@
 # Flutter_Localization
+it is a Fluter  language localization app . how to change a langulage in app ? iI made this app to learn Flutter Localizations , Router.
+Learn & Enjoy!
 
-A new Flutter project.
+# Packages
+SharePrefarance,
+flutter_localizations:
+![Screenshot 2020-11-29 at 8 38 54 PM](https://user-images.githubusercontent.com/48550316/101641959-9d932300-3a5c-11eb-9d05-80b67f82c65b.png)
 
 ## Getting Started
 
