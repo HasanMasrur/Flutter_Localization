@@ -1,5 +1,6 @@
 import 'package:Flutter_Localization/Language.dart';
 import 'package:Flutter_Localization/localization/demo_localization.dart';
+import 'package:Flutter_Localization/localization/localization_constants.dart';
 import 'package:Flutter_Localization/main.dart';
 import 'package:Flutter_Localization/routes/route_name.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +18,14 @@ class _HomePage extends State<HomePage> {
   _languagecode(Language language) {
     Locale _temp;
     switch (language.languageCode) {
-      case 'en':
+      case ENGLISH:
         _temp = Locale(language.languageCode, 'US');
         break;
-      case 'bn':
+      case BANGLA:
         _temp = Locale(language.languageCode, 'BD');
         break;
       default:
-        _temp = Locale(language.languageCode, 'US');
+        _temp = Locale(ENGLISH, 'US');
     }
     MyApp.setLocales(context, _temp);
   }
@@ -33,34 +34,31 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: _drowerpage(),
-        appBar: AppBar(
-            title: Text(
-                DemoLocalizations.of(context).getTranslatedValue('home_page')),
-            actions: [
-              Padding(
-                  padding: EdgeInsets.all(8),
-                  child: DropdownButton(
-                    onChanged: (language) {
-                      _languagecode(language);
-                    },
-                    icon: Icon(
-                      Icons.language,
-                      color: Colors.white,
-                    ),
-                    underline: SizedBox(),
-                    items: Language.languageList()
-                        .map<DropdownMenuItem>(
-                          (lang) => DropdownMenuItem(
-                              value: lang,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [Text(lang.flag), Text(lang.name)],
-                              )),
-                        )
-                        .toList(),
-                  ))
-            ]),
+        appBar:
+            AppBar(title: Text(getTranslated(context, 'home_page')), actions: [
+          Padding(
+              padding: EdgeInsets.all(8),
+              child: DropdownButton(
+                onChanged: (language) {
+                  _languagecode(language);
+                },
+                icon: Icon(
+                  Icons.language,
+                  color: Colors.white,
+                ),
+                underline: SizedBox(),
+                items: Language.languageList()
+                    .map<DropdownMenuItem>(
+                      (lang) => DropdownMenuItem(
+                          value: lang,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [Text(lang.flag), Text(lang.name)],
+                          )),
+                    )
+                    .toList(),
+              ))
+        ]),
         body: _mainform());
   }
 
