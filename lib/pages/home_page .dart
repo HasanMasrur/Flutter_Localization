@@ -1,4 +1,6 @@
 import 'package:Flutter_Localization/Language.dart';
+import 'package:Flutter_Localization/localization/demo_localization.dart';
+import 'package:Flutter_Localization/main.dart';
 import 'package:Flutter_Localization/routes/route_name.dart';
 import 'package:flutter/material.dart';
 
@@ -9,40 +11,56 @@ class HomePage extends StatefulWidget {
   }
 }
 
-_languagecode(Language language) {
-  print(language.contruecode);
-}
-
 class _HomePage extends State<HomePage> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
+  _languagecode(Language language) {
+    Locale _temp;
+    switch (language.languageCode) {
+      case 'en':
+        _temp = Locale(language.languageCode, 'US');
+        break;
+      case 'bn':
+        _temp = Locale(language.languageCode, 'BD');
+        break;
+      default:
+        _temp = Locale(language.languageCode, 'US');
+    }
+    MyApp.setLocales(context, _temp);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: _drowerpage(),
-        appBar: AppBar(title: Text('HomePage'), actions: [
-          Padding(
-              padding: EdgeInsets.all(8),
-              child: DropdownButton(
-                onChanged: (language) {
-                  _languagecode(language);
-                },
-                icon: Icon(
-                  Icons.language,
-                  color: Colors.white,
-                ),
-                underline: SizedBox(),
-                items: Language.languageList()
-                    .map<DropdownMenuItem>(
-                      (lang) => DropdownMenuItem(
-                          value: lang,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [Text(lang.flag), Text(lang.name)],
-                          )),
-                    )
-                    .toList(),
-              ))
-        ]),
+        appBar: AppBar(
+            title: Text(
+                DemoLocalizations.of(context).getTranslatedValue('home_page')),
+            actions: [
+              Padding(
+                  padding: EdgeInsets.all(8),
+                  child: DropdownButton(
+                    onChanged: (language) {
+                      _languagecode(language);
+                    },
+                    icon: Icon(
+                      Icons.language,
+                      color: Colors.white,
+                    ),
+                    underline: SizedBox(),
+                    items: Language.languageList()
+                        .map<DropdownMenuItem>(
+                          (lang) => DropdownMenuItem(
+                              value: lang,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [Text(lang.flag), Text(lang.name)],
+                              )),
+                        )
+                        .toList(),
+                  ))
+            ]),
         body: _mainform());
   }
 
@@ -60,13 +78,16 @@ class _HomePage extends State<HomePage> {
                 TextFormField(
                   validator: (val) {
                     if (val.isEmpty) {
-                      return 'required field';
+                      return DemoLocalizations.of(context)
+                          .getTranslatedValue('validation');
                     }
                   },
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'name',
-                      hintText: 'Enter name'),
+                    border: OutlineInputBorder(),
+                    labelText: 'name',
+                    hintText: DemoLocalizations.of(context)
+                        .getTranslatedValue('username'),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -74,13 +95,16 @@ class _HomePage extends State<HomePage> {
                 TextFormField(
                   validator: (val) {
                     if (val.isEmpty) {
-                      return 'required field';
+                      return DemoLocalizations.of(context)
+                          .getTranslatedValue('validation');
                     }
                   },
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
-                      hintText: 'Enter email'),
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: DemoLocalizations.of(context)
+                        .getTranslatedValue('useremail'),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -88,13 +112,16 @@ class _HomePage extends State<HomePage> {
                 TextFormField(
                   validator: (val) {
                     if (val.isEmpty) {
-                      return 'required field';
+                      return DemoLocalizations.of(context)
+                          .getTranslatedValue('validation');
                     }
                   },
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'phone',
-                      hintText: 'Enter phonenumber'),
+                    border: OutlineInputBorder(),
+                    labelText: 'password',
+                    hintText: DemoLocalizations.of(context)
+                        .getTranslatedValue('userpassword'),
+                  ),
                 ),
                 MaterialButton(
                     color: Colors.red,

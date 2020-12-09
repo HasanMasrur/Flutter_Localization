@@ -1,0 +1,7 @@
+{
+    "home_page": "HomePage",
+    "username":"Enter Your name",
+    "useremail" :"Enter egmail name",
+    "userpassword": "Enter password",
+    "validation" : "required correct data"
+}
